@@ -602,6 +602,7 @@ class OAuth2Validator(RequestValidator):
         else:
             self._create_access_token(expires, request, token)
 
+    @transaction.atomic()
     def _create_access_token(self, expires, request, token, source_refresh_token=None):
         id_token = token.get("id_token", None)
         if id_token:
